@@ -35,17 +35,19 @@ Person.prototype.wakeUp = function(){
 3. Make a `Student` prototype that inherits from `person` and has the additional attribute of `studying:boolean`.
 
 ```
-Person.prototype.student = function(studying){
+function Student (studying){
   this.studying = true;
-};
+}
+
+Student.prototype = new Person();
+Student.prototype.constructor = Student;
 
 ```
 
 4. Add methods to `Student` called `study`, and `stopStudy` to toggle `studying`
 
 ```
-Person.prototype.student = function(studying){
-  this.studying = true;
+Student.prototype.student = function(studying){
 
   this.study = function(studying){
     if (studying === false){
@@ -65,7 +67,7 @@ Person.prototype.student = function(studying){
 5. Override the `sleep` method on `student` to only run `sleep` if `studying` is `false`.
 
 ```
-Person.prototype.sleep = function(studying){
+Student.prototype.sleep = function(studying){
   if (studying === false){
     this.sleep = true;
   } else {
